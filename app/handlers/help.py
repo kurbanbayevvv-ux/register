@@ -1,9 +1,8 @@
-from aiogram import Router, types
-from aiogram.filters import Command
+from aiogram import Router
+from aiogram.types import Message
 
 router = Router()
 
-@router.message(Command('help'))
-async def help_cmd(message: types.Message):
-    await message.answer("Yordam kerak bo'lsa\nShu yerda yozib keting!")
-
+@router.message()
+async def help_handler(message: Message):
+    await message.answer("Botdan foydalanish uchun /start bosing")

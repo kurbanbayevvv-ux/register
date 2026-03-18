@@ -1,0 +1,10 @@
+from aiogram.fsm.state import State, StatesGroup
+from aiogram import Router, types
+
+router = Router()
+
+class Register(StatesGroup):
+    name = State()
+    phone = State()
+    age = State()
+    course = State()
