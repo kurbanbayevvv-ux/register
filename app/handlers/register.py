@@ -52,6 +52,8 @@ async def get_phone(message: types.Message, state: FSMContext):
 async def get_age(message: types.Message, state: FSMContext):
     data = await state.update_data(course=message.text)
 
+
+
     name = data["name"]
     phone = data["phone"]
     age = data["age"]

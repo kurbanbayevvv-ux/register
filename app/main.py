@@ -6,6 +6,8 @@ from aiogram import Bot, Dispatcher
 from dotenv import load_dotenv
 
 from handlers.register import router as register
+from handlers.admin import router as admin
+from handlers.query import router as query
 
 load_dotenv()
 BOT_TOKEN = os.getenv("BOT_TOKEN")
@@ -18,6 +20,8 @@ async def main():
 
     # router ulash
     dp.include_router(register)
+    dp.include_router(admin)
+    dp.include_router(query)
 
     print("Bot ishga tushdi...")
 

@@ -29,3 +29,12 @@ def addUserInfo(chat_id, full_name, phone_number, age, course):
            "WHERE chat_id = %s")
     cur.execute(sql, (full_name, phone_number, age, course, chat_id))
     conn.commit()
+
+def getUsers():
+    sql = "SELECT * FROM users"
+    cur.execute(sql)
+    return cur.fetchall()
+
+def countUsers():
+    cur.execute("SELECT COUNT(*) FROM users")
+    return cur.fetchone()[0]
