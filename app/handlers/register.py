@@ -1,12 +1,12 @@
-from aiogram import Router, types
+from aiogram import Router, types, Bot
 from aiogram.filters import Command, CommandStart
 from aiogram.fsm.context import FSMContext
 from keyboards.keyboards import keyboard_start, keyboard_phone_number, keyboard_courses
-
 import os
 from dotenv import load_dotenv
-load_dotenv()
 
+load_dotenv()
+admin = os.getenv("ADMIN")
 isAdmin = lambda x: os.getenv('ADMIN') == str(x)
 
 from database.postgres import Register as RegisterUser, addUserInfo
@@ -66,5 +66,16 @@ async def get_age(message: types.Message, state: FSMContext):
         f"Yosh: {age}\n"
         f"Kurs: {course}"
     )
+    chatId = message.chat.id
+    addUserInfo(chatId, name, phone, age, course)
+
+    BOT_TOKEN = os.getenv("BOT_TOKEN")
+    bot1 = Bot(token=BOT_TOKEN)
+    await bot1.send_message(chat_id=admin, 
+                    text=f"Yangi foydalanuvchi:\n"
+                        f"Ism: {name}\n"
+                        f"Tel: {phone}\n"
+                        f"Yosh: {age}\n"
+                        f"Kurs: {course}")
     chatId = message.chat.id
     addUserInfo(chatId, name, phone, age, course)
